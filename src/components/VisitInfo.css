@@ -1,0 +1,196 @@
+.visit-info {
+  padding:
+    clamp(3.5rem, 8vw, 7.5rem)
+    var(--page-pad-x)
+    clamp(3.25rem, 7vw, 6.5rem);
+  background: var(--color-foam);
+  color: var(--color-ink);
+}
+
+.visit-info__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.visit-info__intro {
+  margin-bottom: clamp(2rem, 5vw, 4.5rem);
+}
+
+.visit-info__eyebrow {
+  margin: 0 0 0.85rem;
+  color: var(--color-primary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.visit-info__title {
+  margin: 0;
+  max-width: 12ch;
+  font-size: clamp(2rem, 8.5vw, 4.75rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+}
+
+.visit-info__lead {
+  max-width: 28rem;
+  margin: 1rem 0 0;
+  color: color-mix(in srgb, var(--color-ink) 68%, transparent);
+  font-size: clamp(0.92rem, 3.2vw, 1.05rem);
+  line-height: 1.65;
+}
+
+.visit-info__grid {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 2.75rem);
+  padding-top: clamp(1.75rem, 4vw, 2.75rem);
+  border-top: 1px solid color-mix(in srgb, var(--color-ink) 10%, transparent);
+}
+
+.visit-info__block {
+  min-width: 0;
+}
+
+.visit-info__label {
+  margin: 0 0 0.75rem;
+  color: var(--color-primary);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.visit-info__amenities {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.visit-info__amenities li {
+  padding: 0.65rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+  font-size: clamp(0.92rem, 3.2vw, 1rem);
+  line-height: 1.5;
+}
+
+.visit-info__amenities li:first-child {
+  padding-top: 0;
+}
+
+.visit-info__amenities li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.visit-info__text {
+  margin: 0;
+  font-size: clamp(0.92rem, 3.2vw, 1rem);
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--color-ink) 84%, transparent);
+  overflow-wrap: anywhere;
+}
+
+.visit-info__link {
+  display: inline-block;
+  margin-top: 0.85rem;
+  color: var(--color-primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+  transition: border-color 0.25s ease;
+}
+
+.visit-info__link:hover,
+.visit-info__link:focus-visible {
+  border-bottom-color: var(--color-primary);
+}
+
+.visit-info__phone {
+  display: inline-block;
+  color: inherit;
+  font-size: clamp(1.25rem, 6vw, 1.85rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  line-height: 1.2;
+  transition: color 0.25s ease;
+}
+
+.visit-info__phone:hover,
+.visit-info__phone:focus-visible {
+  color: var(--color-primary);
+}
+
+.visit-info__hours-note {
+  margin: 0 0 0.85rem;
+  font-size: clamp(0.92rem, 3.2vw, 1rem);
+  font-weight: 500;
+  color: color-mix(in srgb, var(--color-ink) 84%, transparent);
+}
+
+.visit-info__hours {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.visit-info__hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 8%, transparent);
+  font-size: clamp(0.86rem, 3vw, 0.92rem);
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--color-ink) 78%, transparent);
+}
+
+.visit-info__hours li:first-child {
+  padding-top: 0;
+}
+
+.visit-info__hours li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.visit-info__hours li span:last-child {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (min-width: 760px) {
+  .visit-info__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
+    align-items: end;
+    column-gap: 2.5rem;
+  }
+
+  .visit-info__eyebrow {
+    grid-column: 1 / -1;
+    margin-bottom: 1rem;
+  }
+
+  .visit-info__lead {
+    margin: 0;
+  }
+
+  .visit-info__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(2rem, 5vw, 4rem);
+    row-gap: clamp(2.25rem, 4vw, 3rem);
+  }
+}
+
+@media (min-width: 980px) {
+  .visit-info__grid {
+    grid-template-columns: 1.1fr 1fr 0.9fr 1.15fr;
+    align-items: start;
+  }
+}

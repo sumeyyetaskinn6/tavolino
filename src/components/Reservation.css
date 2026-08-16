@@ -1,0 +1,195 @@
+.reservation {
+  padding:
+    clamp(3.5rem, 8vw, 7.5rem)
+    var(--page-pad-x)
+    clamp(3.5rem, 8vw, 7.5rem);
+  background:
+    radial-gradient(
+      ellipse at 12% 0%,
+      color-mix(in srgb, var(--color-cream) 10%, transparent),
+      transparent 45%
+    ),
+    var(--color-primary);
+  color: var(--color-cream);
+}
+
+.reservation__inner {
+  display: grid;
+  gap: clamp(1.75rem, 5vw, 4.5rem);
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.reservation__eyebrow {
+  margin: 0 0 0.85rem;
+  color: color-mix(in srgb, var(--color-cream) 62%, transparent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.reservation__title {
+  margin: 0;
+  max-width: 10ch;
+  font-size: clamp(2.1rem, 9vw, 5rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+}
+
+.reservation__lead {
+  max-width: 26rem;
+  margin: 1rem 0 0;
+  color: color-mix(in srgb, var(--color-cream) 74%, transparent);
+  font-size: clamp(0.92rem, 3.2vw, 1.05rem);
+  line-height: 1.65;
+}
+
+.reservation__visual {
+  margin: clamp(1.35rem, 3.5vw, 2.5rem) 0 0;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-ink) 25%, transparent);
+}
+
+.reservation__visual img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.reservation__form {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  min-width: 0;
+  padding: clamp(1.15rem, 3.5vw, 2rem);
+  border: 1px solid color-mix(in srgb, var(--color-cream) 14%, transparent);
+  background: color-mix(in srgb, var(--color-ink) 22%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.reservation__row {
+  display: grid;
+  gap: 1rem;
+}
+
+.reservation__field {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.reservation__field label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-cream) 68%, transparent);
+}
+
+.reservation__field input,
+.reservation__field select,
+.reservation__field textarea {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0.9rem 0.95rem;
+  border: 1px solid color-mix(in srgb, var(--color-cream) 18%, transparent);
+  border-radius: 0;
+  background: color-mix(in srgb, var(--color-cream) 96%, transparent);
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.4;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.reservation__field textarea {
+  resize: vertical;
+  min-height: 5.75rem;
+}
+
+.reservation__field input::placeholder,
+.reservation__field textarea::placeholder {
+  color: color-mix(in srgb, var(--color-ink) 42%, transparent);
+}
+
+.reservation__field input:focus,
+.reservation__field select:focus,
+.reservation__field textarea:focus {
+  outline: none;
+  border-color: var(--color-cream);
+  background: var(--color-foam);
+}
+
+.reservation__field input[type='date'],
+.reservation__field input[type='time'],
+.reservation__field select {
+  color-scheme: light;
+  min-height: 3.1rem;
+}
+
+.reservation__submit {
+  margin-top: 0.2rem;
+  width: 100%;
+  min-height: 3.15rem;
+  padding: 0.95rem 1.25rem;
+  border: 1px solid var(--color-cream);
+  border-radius: 999px;
+  background: var(--color-cream);
+  color: var(--color-primary);
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.reservation__submit:hover,
+.reservation__submit:focus-visible {
+  background: transparent;
+  color: var(--color-cream);
+  transform: translateY(-1px);
+}
+
+.reservation__hint {
+  margin: 0;
+  color: color-mix(in srgb, var(--color-cream) 58%, transparent);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (min-width: 560px) {
+  .reservation__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 860px) {
+  .reservation__inner {
+    grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 1.1fr);
+    align-items: start;
+  }
+
+  .reservation__intro {
+    position: sticky;
+    top: 7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reservation__submit {
+    transition: none;
+  }
+}

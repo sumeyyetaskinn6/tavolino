@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Tavolino — şehrin ortasında sakin bir mola. Kahve, mutfak ve atmosfer."
+    />
+    <link
+      rel="preload"
+      href="/videos/posters/main-mobile.jpg"
+      as="image"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      href="/videos/main-mobile.mp4"
+      as="video"
+      type="video/mp4"
+      fetchpriority="high"
+      media="(max-width: 640px)"
+    />
+    <link
+      rel="preload"
+      href="/videos/main-optimized.mp4"
+      as="video"
+      type="video/mp4"
+      fetchpriority="high"
+      media="(min-width: 641px)"
+    />
+    <title>Tavolino</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
