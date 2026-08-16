@@ -16,13 +16,10 @@ const films: Film[] = [
   { id: '8', label: 'Atmosfer' },
 ]
 
-// The first cards are visible right after the hero, so they download immediately.
-const EAGER_COUNT = 3
-
-function FilmCard({ film, eager }: { film: Film; eager: boolean }) {
+function FilmCard({ film }: { film: Film }) {
   const videoRef = useRef<HTMLVideoElement>(null)
-  const visibleRef = useRef(eager)
-  const [primed, setPrimed] = useState(eager)
+  const visibleRef = useRef(false)
+  const [shouldLoad, setShouldLoad] = useState(false)
 
   useEffect(() => {
     const video = videoRef.current
@@ -43,14 +40,10 @@ function FilmCard({ film, eager }: { film: Film; eager: boolean }) {
     const prefetchObserver = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return
-        setPrimed(true)
-        if (video.preload !== 'auto') {
-          video.preload = 'auto'
-          video.load()
-        }
+        setShouldLoad(true)
         prefetchObserver.disconnect()
       },
-      { rootMargin: '1800px 0px', threshold: 0 },
+      { rootMargin: '0px', threshold: 0 },
     )
 
     const playbackObserver = new IntersectionObserver(
@@ -73,8 +66,6 @@ function FilmCard({ film, eager }: { film: Film; eager: boolean }) {
     video.addEventListener('canplay', play)
     video.addEventListener('play', enforceVisibility)
 
-    if (eager) play()
-
     return () => {
       prefetchObserver.disconnect()
       playbackObserver.disconnect()
@@ -82,31 +73,39 @@ function FilmCard({ film, eager }: { film: Film; eager: boolean }) {
       video.removeEventListener('canplay', play)
       video.removeEventListener('play', enforceVisibility)
     }
-  }, [eager])
+  }, [])
+
+  useEffect(() => {
+    if (shouldLoad) videoRef.current?.load()
+  }, [shouldLoad])
 
   return (
     <figure className="film-showcase__card">
       <video
         ref={videoRef}
         className="film-showcase__video"
-        poster={`/videos/posters/film-${film.id}.jpg`}
+        poster={`/videos/posters/film-${film.id}.webp`}
         autoPlay
         muted
         loop
         playsInline
-        preload={primed ? 'auto' : 'metadata'}
+        preload={shouldLoad ? 'auto' : 'none'}
         disablePictureInPicture
         disableRemotePlayback
         controls={false}
         tabIndex={-1}
         aria-label={`Tavolino — ${film.label}`}
       >
-        <source
-          src={`/videos/film-${film.id}-mobile.mp4`}
-          type="video/mp4"
-          media="(max-width: 640px)"
-        />
-        <source src={`/videos/film-${film.id}.mp4`} type="video/mp4" />
+        {shouldLoad && (
+          <>
+            <source
+              src={`/videos/film-${film.id}-mobile.mp4`}
+              type="video/mp4"
+              media="(max-width: 640px)"
+            />
+            <source src={`/videos/film-${film.id}.mp4`} type="video/mp4" />
+          </>
+        )}
       </video>
     </figure>
   )
@@ -128,8 +127,8 @@ export function FilmShowcase() {
       </div>
 
       <div className="film-showcase__grid">
-        {films.map((film, index) => (
-          <FilmCard key={film.id} film={film} eager={index < EAGER_COUNT} />
+        {films.map((film) => (
+          <FilmCard key={film.id} film={film} />
         ))}
       </div>
     </section>

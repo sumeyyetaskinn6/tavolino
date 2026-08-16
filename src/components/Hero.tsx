@@ -59,7 +59,7 @@ export function Hero() {
           <video
             ref={videoRef}
             className="hero__video"
-            poster="/videos/posters/main-mobile.jpg"
+            poster="/videos/posters/main-mobile.webp"
             autoPlay
             muted
             loop
@@ -86,9 +86,13 @@ export function Hero() {
       <div className="hero__content">
         <h1 className="hero__brand">
           <img
-            src="/brand/tavolino-white.png"
+            src="/brand/tavolino-white.webp"
             alt="Tavolino — Coffee & Kitchen Works"
             className="hero__logo"
+            width={320}
+            height={96}
+            decoding="async"
+            fetchPriority="high"
           />
         </h1>
         <p className="hero__lead">

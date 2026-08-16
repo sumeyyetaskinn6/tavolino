@@ -81,12 +81,22 @@ export function Reservation() {
             iletelim.
           </p>
           <figure className="reservation__visual">
-            <img
-              src="/brand/reservation-table.png"
-              alt="Tavolino masası — Bu masada güzel şeyler olur"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture>
+              <source
+                srcSet="/brand/reservation-table.avif"
+                type="image/avif"
+              />
+              <source
+                srcSet="/brand/reservation-table.webp"
+                type="image/webp"
+              />
+              <img
+                src="/brand/reservation-table.jpg"
+                alt="Tavolino masası — Bu masada güzel şeyler olur"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </figure>
         </div>
 
@@ -98,6 +108,7 @@ export function Reservation() {
               name="name"
               type="text"
               autoComplete="name"
+              enterKeyHint="next"
               required
               placeholder="Adınız ve soyadınız"
               value={fields.name}
@@ -111,7 +122,9 @@ export function Reservation() {
               id="reservation-phone"
               name="phone"
               type="tel"
+              inputMode="tel"
               autoComplete="tel"
+              enterKeyHint="next"
               required
               placeholder="05xx xxx xx xx"
               value={fields.phone}
@@ -172,6 +185,7 @@ export function Reservation() {
               id="reservation-note"
               name="note"
               rows={3}
+              enterKeyHint="done"
               placeholder="Özel isteğiniz varsa yazabilirsiniz"
               value={fields.note}
               onChange={updateField('note')}

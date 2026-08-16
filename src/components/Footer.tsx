@@ -9,9 +9,13 @@ export function Footer() {
       <div className="footer__inner">
         <div className="footer__brand-block">
           <img
-            src="/brand/tavolino-white.png"
+            src="/brand/tavolino-white.webp"
             alt="Tavolino"
             className="footer__logo"
+            width={180}
+            height={54}
+            loading="lazy"
+            decoding="async"
           />
           <p className="footer__tagline">
             Coffee & Kitchen Works — Nilüfer, Bursa.

@@ -30,9 +30,13 @@ export function Header() {
       <div className="header__inner">
         <a className="header__brand" href="#top" aria-label="Tavolino ana sayfa">
           <img
-            src="/brand/tavolino-white.png"
+            src="/brand/tavolino-white.webp"
             alt="Tavolino"
             className="header__logo"
+            width={180}
+            height={54}
+            decoding="async"
+            fetchPriority="high"
           />
         </a>
 

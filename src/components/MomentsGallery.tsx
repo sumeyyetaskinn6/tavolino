@@ -3,88 +3,99 @@ import './MomentsGallery.css'
 type MomentSize = 'standard' | 'tall' | 'wide' | 'feature'
 
 type Moment = {
-  src: string
+  id: string
   alt: string
   size: MomentSize
 }
 
 const moments: Moment[] = [
   {
-    src: '/gallery/moment-01.jpg',
+    id: 'moment-01',
     alt: 'Tavolino mutfağından taze omlet',
     size: 'tall',
   },
   {
-    src: '/gallery/moment-02.jpg',
+    id: 'moment-02',
     alt: 'Tavolino’da keyifli bir öğle yemeği',
     size: 'standard',
   },
   {
-    src: '/gallery/moment-03.jpg',
+    id: 'moment-03',
     alt: 'Tavolino imza tabağı',
     size: 'standard',
   },
   {
-    src: '/gallery/moment-04.jpg',
+    id: 'moment-04',
     alt: 'Paylaşımlı Tavolino kahvaltısı',
     size: 'tall',
   },
   {
-    src: '/gallery/moment-05.jpg',
+    id: 'moment-05',
     alt: 'Tavolino’da makarna keyfi',
     size: 'standard',
   },
   {
-    src: '/gallery/moment-06.jpg',
+    id: 'moment-06',
     alt: 'Limonlu sıcak içecek',
     size: 'standard',
   },
   {
-    src: '/gallery/moment-07.jpg',
+    id: 'moment-07',
     alt: 'Tavolino usulü pizza',
     size: 'feature',
   },
   {
-    src: '/gallery/moment-08.jpg',
+    id: 'moment-08',
     alt: 'Yoğurtlu Tavolino tabağı',
     size: 'standard',
   },
   {
-    src: '/gallery/moment-09.jpg',
+    id: 'moment-09',
     alt: 'Tavolino fincanlarında kahve',
     size: 'standard',
   },
   {
-    src: '/gallery/moment-10.jpg',
+    id: 'moment-10',
     alt: 'Tavolino burger hazırlanırken',
     size: 'tall',
   },
   {
-    src: '/gallery/moment-11.jpg',
+    id: 'moment-11',
     alt: 'Kahve ve tatlı servisi',
     size: 'standard',
   },
   {
-    src: '/gallery/moment-12.jpg',
+    id: 'moment-12',
     alt: 'Gün ışığında taze salata',
     size: 'standard',
   },
   {
-    src: '/gallery/moment-13.jpg',
+    id: 'moment-13',
     alt: 'Taze salatanın son dokunuşu',
     size: 'tall',
   },
   {
-    src: '/gallery/moment-14.jpg',
+    id: 'moment-14',
     alt: 'Tavolino soğuk kahvesi',
     size: 'standard',
   },
   {
-    src: '/gallery/moment-15.jpg',
+    id: 'moment-15',
     alt: 'Taze otlarla servis edilen soğuk çorba',
     size: 'wide',
   },
 ]
+
+const sizesByLayout: Record<MomentSize, string> = {
+  standard: '(max-width: 759px) 48vw, (max-width: 1120px) 30vw, 340px',
+  tall: '(max-width: 759px) 48vw, (max-width: 1120px) 30vw, 340px',
+  wide: '(max-width: 759px) 94vw, (max-width: 1120px) 90vw, 1120px',
+  feature: '(max-width: 759px) 94vw, (max-width: 1120px) 90vw, 1120px',
+}
+
+function momentSources(id: string, ext: 'avif' | 'webp' | 'jpg') {
+  return `/gallery/${id}-800.${ext} 800w, /gallery/${id}-1200.${ext} 1200w`
+}
 
 export function MomentsGallery() {
   return (
@@ -109,19 +120,37 @@ export function MomentsGallery() {
       </div>
 
       <div className="moments-gallery__grid">
-        {moments.map((moment) => (
-          <figure
-            className={`moments-gallery__item moments-gallery__item--${moment.size}`}
-            key={moment.src}
-          >
-            <img
-              src={moment.src}
-              alt={moment.alt}
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-        ))}
+        {moments.map((moment) => {
+          const sizes = sizesByLayout[moment.size]
+
+          return (
+            <figure
+              className={`moments-gallery__item moments-gallery__item--${moment.size}`}
+              key={moment.id}
+            >
+              <picture>
+                <source
+                  type="image/avif"
+                  srcSet={momentSources(moment.id, 'avif')}
+                  sizes={sizes}
+                />
+                <source
+                  type="image/webp"
+                  srcSet={momentSources(moment.id, 'webp')}
+                  sizes={sizes}
+                />
+                <img
+                  src={`/gallery/${moment.id}-800.jpg`}
+                  srcSet={momentSources(moment.id, 'jpg')}
+                  sizes={sizes}
+                  alt={moment.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </figure>
+          )
+        })}
       </div>
     </section>
   )

@@ -16,8 +16,15 @@
 .reservation__inner {
   display: grid;
   gap: clamp(1.75rem, 5vw, 4.5rem);
+  width: 100%;
   max-width: 1120px;
   margin: 0 auto;
+  min-width: 0;
+}
+
+.reservation__intro,
+.reservation__form {
+  min-width: 0;
 }
 
 .reservation__eyebrow {
@@ -52,6 +59,11 @@
   background: color-mix(in srgb, var(--color-ink) 25%, transparent);
 }
 
+.reservation__visual picture {
+  display: block;
+  width: 100%;
+}
+
 .reservation__visual img {
   width: 100%;
   height: auto;
@@ -62,10 +74,9 @@
 
 .reservation__form {
   display: grid;
-  gap: 1rem;
+  gap: 0.9rem;
   width: 100%;
-  min-width: 0;
-  padding: clamp(1.15rem, 3.5vw, 2rem);
+  padding: clamp(1rem, 3.5vw, 2rem);
   border: 1px solid color-mix(in srgb, var(--color-cream) 14%, transparent);
   background: color-mix(in srgb, var(--color-ink) 22%, transparent);
   backdrop-filter: blur(10px);
@@ -73,13 +84,16 @@
 
 .reservation__row {
   display: grid;
-  gap: 1rem;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+  min-width: 0;
 }
 
 .reservation__field {
   display: grid;
   gap: 0.4rem;
   min-width: 0;
+  width: 100%;
 }
 
 .reservation__field label {
@@ -93,16 +107,19 @@
 .reservation__field input,
 .reservation__field select,
 .reservation__field textarea {
+  box-sizing: border-box;
+  display: block;
   width: 100%;
   max-width: 100%;
+  min-width: 0;
   margin: 0;
-  padding: 0.9rem 0.95rem;
+  padding: 0.85rem 0.9rem;
   border: 1px solid color-mix(in srgb, var(--color-cream) 18%, transparent);
   border-radius: 0;
   background: color-mix(in srgb, var(--color-cream) 96%, transparent);
   color: var(--color-ink);
   font: inherit;
-  font-size: 1rem;
+  font-size: 16px; /* Prevents iOS input zoom */
   line-height: 1.4;
   transition:
     border-color 0.25s ease,
@@ -111,7 +128,7 @@
 
 .reservation__field textarea {
   resize: vertical;
-  min-height: 5.75rem;
+  min-height: 5.5rem;
 }
 
 .reservation__field input::placeholder,
@@ -131,7 +148,32 @@
 .reservation__field input[type='time'],
 .reservation__field select {
   color-scheme: light;
-  min-height: 3.1rem;
+  min-height: 3rem;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.reservation__field input[type='date'],
+.reservation__field input[type='time'] {
+  /* Native pickers can force wide intrinsic widths on mobile Safari. */
+  min-width: 0;
+  max-width: 100%;
+}
+
+.reservation__field input[type='date']::-webkit-date-and-time-value,
+.reservation__field input[type='time']::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+.reservation__field select {
+  background-image: linear-gradient(45deg, transparent 50%, var(--color-ink) 50%),
+    linear-gradient(135deg, var(--color-ink) 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.15rem) calc(50% - 0.15rem),
+    calc(100% - 0.85rem) calc(50% - 0.15rem);
+  background-size: 0.35rem 0.35rem;
+  background-repeat: no-repeat;
+  padding-right: 2.25rem;
 }
 
 .reservation__submit {
@@ -170,9 +212,47 @@
   text-align: center;
 }
 
+@media (max-width: 559px) {
+  .reservation {
+    padding-block: clamp(3rem, 12vw, 4.5rem);
+  }
+
+  .reservation__form {
+    gap: 0.85rem;
+    padding: 1rem 0.9rem;
+  }
+
+  .reservation__field input,
+  .reservation__field select,
+  .reservation__field textarea {
+    padding: 0.8rem 0.75rem;
+  }
+
+  .reservation__field input[type='date'],
+  .reservation__field input[type='time'],
+  .reservation__field select {
+    min-height: 3.05rem;
+  }
+
+  .reservation__visual {
+    margin-top: 1.25rem;
+  }
+}
+
 @media (min-width: 560px) {
   .reservation__row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reservation__form {
+    gap: 1rem;
+  }
+
+  .reservation__field input,
+  .reservation__field select,
+  .reservation__field textarea {
+    font-size: 1rem;
+    padding: 0.9rem 0.95rem;
   }
 }
 
