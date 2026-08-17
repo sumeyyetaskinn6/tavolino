@@ -80,6 +80,11 @@ const moments: Moment[] = [
     size: 'standard',
   },
   {
+    id: 'moment-16',
+    alt: 'Kabak cipsi ve kuru domatesli taze salata',
+    size: 'standard',
+  },
+  {
     id: 'moment-15',
     alt: 'Taze otlarla servis edilen soğuk çorba',
     size: 'wide',
