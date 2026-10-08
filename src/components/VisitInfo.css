@@ -84,6 +84,27 @@
   padding-bottom: 0;
 }
 
+.visit-info__meal-cards {
+  margin: 0.55rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.visit-info__meal-cards li {
+  padding: 0.2rem 0;
+  border-bottom: 0;
+  color: color-mix(in srgb, var(--color-ink) 62%, transparent);
+  font-size: clamp(0.8rem, 2.8vw, 0.88rem);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+}
+
+.visit-info__meal-cards li:first-child,
+.visit-info__meal-cards li:last-child {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
 .visit-info__text {
   margin: 0;
   font-size: clamp(0.92rem, 3.2vw, 1rem);

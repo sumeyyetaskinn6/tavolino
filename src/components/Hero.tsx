@@ -96,8 +96,7 @@ export function Hero() {
           />
         </h1>
         <p className="hero__lead">
-          Şehrin ortasında sakin bir mola — taze demlenmiş kahve ve samimi bir
-          masa.
+          Mahallenizdeki İtalyan Lezzetleri
         </p>
         <div className="hero__actions">
           <a className="hero__button hero__button--primary" href="#films">

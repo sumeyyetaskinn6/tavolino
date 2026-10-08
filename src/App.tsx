@@ -4,6 +4,7 @@ import { FilmShowcase } from './components/FilmShowcase'
 import { MomentsGallery } from './components/MomentsGallery'
 import { Reservation } from './components/Reservation'
 import { VisitInfo } from './components/VisitInfo'
+import { LocationMap } from './components/LocationMap'
 import { Footer } from './components/Footer'
 import './App.css'
 
@@ -18,6 +19,7 @@ function App() {
         <Reservation />
         <VisitInfo />
       </main>
+      <LocationMap />
       <Footer />
     </div>
   )

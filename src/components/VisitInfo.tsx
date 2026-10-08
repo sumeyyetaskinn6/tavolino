@@ -1,20 +1,23 @@
 import './VisitInfo.css'
 
 const amenities = [
-  'Açık hava bölümü',
-  'Çocuk menüsü',
-  'Köpeklerin içeri girmesine izin veriliyor',
-  'Yemek kartları geçerlidir',
+  { label: 'Açık hava bölümü' },
+  { label: 'Çocuk menüsü' },
+  { label: 'Köpeklerin içeri girmesine izin veriliyor' },
+  {
+    label: 'Yemek kartları geçerlidir',
+    details: ['Edenred - Ticket', 'Pluxee - Sodexo'],
+  },
 ]
 
 const hours = [
-  { day: 'Pazar', time: '08:00–01:00' },
-  { day: 'Pazartesi', time: '08:00–01:00' },
-  { day: 'Salı', time: '08:00–01:00' },
-  { day: 'Çarşamba', time: '08:00–01:00' },
-  { day: 'Perşembe', time: '08:00–01:00' },
-  { day: 'Cuma', time: '08:00–01:00' },
-  { day: 'Cumartesi', time: '08:00–01:00' },
+  { day: 'Pazar', time: '09:00–00:00' },
+  { day: 'Pazartesi', time: '09:00–00:00' },
+  { day: 'Salı', time: '09:00–00:00' },
+  { day: 'Çarşamba', time: '09:00–00:00' },
+  { day: 'Perşembe', time: '09:00–00:00' },
+  { day: 'Cuma', time: '09:00–00:00' },
+  { day: 'Cumartesi', time: '09:00–00:00' },
 ]
 
 const mapsUrl =
@@ -32,8 +35,9 @@ export function VisitInfo() {
             bekliyoruz.
           </h2>
           <p className="visit-info__lead">
-            Nilüfer&apos;de, Mithatpaşa Caddesi&apos;nde — açık havada,
-            çocuklarla ve dostlarınızla.
+            Nilüfer&apos;de 23 Nisan Mahallesi&apos;nde, 
+            üzerinde bulunan Restoranımızda açık havada, çocuklarla ve dostlarınızla keyifli bir
+            mola için sizi bekliyoruz.
           </p>
         </div>
 
@@ -42,7 +46,16 @@ export function VisitInfo() {
             <p className="visit-info__label">Hizmet seçenekleri</p>
             <ul className="visit-info__amenities">
               {amenities.map((item) => (
-                <li key={item}>{item}</li>
+                <li key={item.label}>
+                  {item.label}
+                  {item.details ? (
+                    <ul className="visit-info__meal-cards">
+                      {item.details.map((card) => (
+                        <li key={card}>{card}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </li>
               ))}
             </ul>
           </div>
@@ -73,7 +86,7 @@ export function VisitInfo() {
 
           <div className="visit-info__block visit-info__block--hours">
             <p className="visit-info__label">Çalışma saatleri</p>
-            <p className="visit-info__hours-note">Her gün 08:00 – 01:00</p>
+            <p className="visit-info__hours-note">Her gün 09:00 – 00:00</p>
             <ul className="visit-info__hours">
               {hours.map((row) => (
                 <li key={row.day}>

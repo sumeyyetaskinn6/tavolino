@@ -5,6 +5,7 @@ type MomentSize = 'standard' | 'tall' | 'wide' | 'feature'
 type Moment = {
   id: string
   alt: string
+  caption: string
   size: MomentSize
 }
 
@@ -12,81 +13,97 @@ const moments: Moment[] = [
   {
     id: 'moment-01',
     alt: 'Tavolino mutfağından taze omlet',
+    caption: 'Taze otlarla süslenmiş sıcak omlet.',
     size: 'tall',
   },
   {
     id: 'moment-02',
-    alt: 'Tavolino’da keyifli bir öğle yemeği',
+    alt: 'Tavolino’da paylaşılan bir öğle yemeği',
+    caption: 'Güneşli bir öğle, paylaşılmış tabaklar.',
     size: 'standard',
   },
   {
     id: 'moment-03',
-    alt: 'Tavolino imza tabağı',
+    alt: 'Yoğurtlu et ve çıtır patates tabağı',
+    caption: 'Yoğurt, et ve çıtır patates.',
     size: 'standard',
   },
   {
     id: 'moment-04',
     alt: 'Paylaşımlı Tavolino kahvaltısı',
+    caption: 'Uzun, paylaşılmış bir kahvaltı.',
     size: 'tall',
   },
   {
     id: 'moment-05',
-    alt: 'Tavolino’da makarna keyfi',
+    alt: 'Şinitzel, patates ve taze salata',
+    caption: 'Çıtır şinitzel, taze salata.',
     size: 'standard',
   },
   {
     id: 'moment-06',
-    alt: 'Limonlu sıcak içecek',
+    alt: 'Kremalı makarna tabağı',
+    caption: 'Kremalı makarna, sakin bir lokma.',
     size: 'standard',
   },
   {
     id: 'moment-07',
-    alt: 'Tavolino usulü pizza',
+    alt: 'Limon dilimli sıcak içecek',
+    caption: 'Limonlu, sıcak bir mola.',
     size: 'feature',
   },
   {
     id: 'moment-08',
-    alt: 'Yoğurtlu Tavolino tabağı',
+    alt: 'Tavolino usulü peynirli pizza',
+    caption: 'Taze çıkan peynirli pizza.',
     size: 'standard',
   },
   {
     id: 'moment-09',
     alt: 'Tavolino fincanlarında kahve',
+    caption: 'Tavolino fincanında taze kahve.',
     size: 'standard',
   },
   {
     id: 'moment-10',
-    alt: 'Tavolino burger hazırlanırken',
+    alt: 'Erimiş peynir dökülen burger',
+    caption: 'Erimiş peynir, sıcak burger.',
     size: 'tall',
   },
   {
     id: 'moment-11',
-    alt: 'Kahve ve tatlı servisi',
+    alt: 'Latte ve San Sebastian cheesecake',
+    caption: 'Latte ve San Sebastian.',
     size: 'standard',
   },
   {
     id: 'moment-12',
-    alt: 'Gün ışığında taze salata',
+    alt: 'Enginarlı taze salata',
+    caption: 'Enginar ve taze yeşillik.',
     size: 'standard',
   },
   {
     id: 'moment-13',
-    alt: 'Taze salatanın son dokunuşu',
+    alt: 'Zeytinyağı dökülen taze salata',
+    caption: 'Zeytinyağının son dokunuşu.',
     size: 'tall',
   },
   {
     id: 'moment-14',
-    alt: 'Tavolino soğuk kahvesi',
+    alt: 'Katmanlı soğuk kahve',
+    caption: 'Katmanlı, ferah bir soğuk kahve.',
     size: 'standard',
   },
   {
     id: 'moment-16',
-    alt: 'Kabak cipsi ve kuru domatesli taze salata',
+    alt: 'Kabak ve kuru domatesli taze salata',
+    caption: 'Kabak ve kuru domatesli salata.',
     size: 'standard',
   },
   {
     id: 'moment-15',
-    alt: 'Taze otlarla servis edilen soğuk çorba',
+    alt: 'Nane ve zeytinyağlı cacık',
+    caption: 'Nane ve zeytinyağlı cacık.',
     size: 'wide',
   },
 ]
@@ -133,26 +150,31 @@ export function MomentsGallery() {
               className={`moments-gallery__item moments-gallery__item--${moment.size}`}
               key={moment.id}
             >
-              <picture>
-                <source
-                  type="image/avif"
-                  srcSet={momentSources(moment.id, 'avif')}
-                  sizes={sizes}
-                />
-                <source
-                  type="image/webp"
-                  srcSet={momentSources(moment.id, 'webp')}
-                  sizes={sizes}
-                />
-                <img
-                  src={`/gallery/${moment.id}-800.jpg`}
-                  srcSet={momentSources(moment.id, 'jpg')}
-                  sizes={sizes}
-                  alt={moment.alt}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </picture>
+              <div className="moments-gallery__media">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcSet={momentSources(moment.id, 'avif')}
+                    sizes={sizes}
+                  />
+                  <source
+                    type="image/webp"
+                    srcSet={momentSources(moment.id, 'webp')}
+                    sizes={sizes}
+                  />
+                  <img
+                    src={`/gallery/${moment.id}-800.jpg`}
+                    srcSet={momentSources(moment.id, 'jpg')}
+                    sizes={sizes}
+                    alt={moment.alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+              <figcaption className="moments-gallery__caption">
+                {moment.caption}
+              </figcaption>
             </figure>
           )
         })}
